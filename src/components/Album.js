@@ -13,6 +13,7 @@ const album = albumData.find( album => {
      this.state = {
        album: album
      };
+
    }
 
 
@@ -38,9 +39,10 @@ const album = albumData.find( album => {
            <tbody>
                 {
                     this.state.album.songs.map((song, index) => {
+
                         return (
-                            <tr>
-                                {index + 1}: {song.title} {song.duration}
+                            <tr key = {index}>
+                            <td>{index + 1}:   {song.title}     {song.duration}</td>
                             </tr>
                         )
                     })
