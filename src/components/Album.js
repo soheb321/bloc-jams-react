@@ -111,13 +111,14 @@ const album = albumData.find( album => {
       return '-:--';
     }
     var minutes = Math.floor(time / 60);
+    
     var seconds = time - minutes * 60;
-    minutes = minutes.toString();
+    
      if (seconds < 10) {
-      seconds = Math.floor(seconds.toString());
+      seconds = Math.floor(seconds);
       return minutes + ":0" + seconds;
     } else {
-      seconds = Math.floor(seconds.toString());
+      seconds = Math.floor(seconds);
       return minutes + ":" + seconds;
     }
     
