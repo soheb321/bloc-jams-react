@@ -16,6 +16,9 @@ const album = albumData.find( album => {
      this.state = {
        album: album,
        currentSong: album.songs[0],
+       currentTime: 0,
+       currentVolume: 0.5, 
+       duration: album.songs[0].duration, 
        isPlaying: false,
        isHovered: false
        
@@ -26,6 +29,32 @@ const album = albumData.find( album => {
      this.audioElement.src = album.songs[0].audioSrc;
 
    }
+
+   componentDidMount() {
+    this.eventListeners = {
+      timeupdate: e => {
+        this.setState({ currentTime: this.audioElement.currentTime });
+      },
+      durationchange: e => {
+        this.setState({ duration: this.audioElement.duration });
+      },
+      volumeControl: e=> {
+        this.setState({currentVolume: this.audioElement.volume});
+      }
+
+      
+    };
+    this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
+    this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+    this.audioElement.addEventListener('volumeControl' , this.eventListeners.volumeControl)
+  }
+
+  componentWillUnmount() {
+    this.audioElement.src = null;
+    this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
+    this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+    this.audioElement.removeEventListener('volumeControl' , this.eventListeners.volume)
+  }
 
    play(){
       this.audioElement.play();
@@ -45,8 +74,17 @@ const album = albumData.find( album => {
     this.setSong(newSong);
     this.play();
   }
-  
+  handleTimeChange(e) {
+    const newTime = this.audioElement.duration * e.target.value;
+    this.audioElement.currentTime = newTime;
+    this.setState({ currentTime: newTime });
+  }
     
+  volumeControl(e){
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({currentVolume: newVolume});
+  }
 
 
 
@@ -67,12 +105,30 @@ const album = albumData.find( album => {
     if (!isSameSong) { this.setSong(song); } 
     this.play();
   }
-  
-}
+  }
+  formatTime(time){
+    if (time === undefined){
+      return '-:--';
+    }
+    var minutes = Math.floor(time / 60);
+    var seconds = time - minutes * 60;
+    minutes = minutes.toString();
+     if (seconds < 10) {
+      seconds = Math.floor(seconds.toString());
+      return minutes + ":0" + seconds;
+    } else {
+      seconds = Math.floor(seconds.toString());
+      return minutes + ":" + seconds;
+    }
+    
+    
+  }
+  songPlaying(song)  {
+    return this.state.currentSong === song && this.state.isPlaying;
+  }
 
-songPlaying(song)  {
-  return this.state.currentSong === song && this.state.isPlaying;
-}
+
+
 
 
 
@@ -137,9 +193,14 @@ songPlaying(song)  {
          <PlayerBar
            isPlaying={this.state.isPlaying}
            currentSong={this.state.currentSong}
+           currentTime={this.audioElement.currentTime}
+           duration={this.audioElement.duration}
            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
            handlePrevClick={() => this.handlePrevClick()}
            handleForClick={()=>this.handleForClick()}
+           handleTimeChange={(e) => this.handleTimeChange(e)}
+           volumeControl={(e) => this.volumeControl(e)}
+           formatTime ={(time) => this.formatTime(time)}
          />
          
        </section>
