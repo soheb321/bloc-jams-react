@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
-
+import '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/styles/Album.css';
 
 
 
@@ -135,6 +135,9 @@ const album = albumData.find( album => {
 
    render(){
     return  (
+      
+
+
         <section className="album">
           <section id="album-info">
            <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title} />
@@ -143,10 +146,23 @@ const album = albumData.find( album => {
              <h2 className="artist">{this.state.album.artist}</h2>
              <div id="release-info">{this.state.album.releaseInfo}</div>
              
+             
               
            </div>
          </section>
- 
+         <PlayerBar
+           isPlaying={this.state.isPlaying}
+           currentSong={this.state.currentSong}
+           currentTime={this.audioElement.currentTime}
+           duration={this.audioElement.duration}
+           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+           handlePrevClick={() => this.handlePrevClick()}
+           handleForClick={()=>this.handleForClick()}
+           handleTimeChange={(e) => this.handleTimeChange(e)}
+           volumeControl={(e) => this.volumeControl(e)}
+           formatTime ={(time) => this.formatTime(time)}
+         />
+         
 
         <table id="song-list">
            <colgroup>
@@ -191,18 +207,7 @@ const album = albumData.find( album => {
                 }
            </tbody>
          </table>
-         <PlayerBar
-           isPlaying={this.state.isPlaying}
-           currentSong={this.state.currentSong}
-           currentTime={this.audioElement.currentTime}
-           duration={this.audioElement.duration}
-           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
-           handlePrevClick={() => this.handlePrevClick()}
-           handleForClick={()=>this.handleForClick()}
-           handleTimeChange={(e) => this.handleTimeChange(e)}
-           volumeControl={(e) => this.volumeControl(e)}
-           formatTime ={(time) => this.formatTime(time)}
-         />
+         
          
        </section>
      );
