@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from  '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/Bloc Jams.jpg';
+import Logo from  '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/bloc-jams.png';
 
 const Landing = () => (
   <section className="landing">

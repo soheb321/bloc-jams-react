@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom';
 import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
-import Logo from '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/Bloc Jams.jpg';
+import Logo from '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/bloc-jams.png';
 
 class App extends Component {
   render() {
