@@ -152,7 +152,7 @@ const album = albumData.find( album => {
            <colgroup>
              <col id="song-number-column" />
              <col id="song-title-column" />
-             <col id="song-duration-column" />
+             <col id="song-duration-column"/>
            </colgroup>  
            <tbody>
                 {
@@ -184,7 +184,7 @@ const album = albumData.find( album => {
                             
                            
                             <td className = "songTitle">{song.title}</td>
-                            <td className = "songDuration">{song.duration}</td>
+                            <td className = "songDuration">{this.formatTime(song.duration)}</td>
                             </tr>
                         )
                     })
