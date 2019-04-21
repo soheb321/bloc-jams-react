@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import albumData from './../data/albums';
-import '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/styles/library.css';
+import './styles/library.css';
 
 class Library extends Component { 
     constructor(props) {
@@ -23,8 +23,8 @@ class Library extends Component {
                          About Album
                          </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         <a class="dropdown-item" href="#">Artist: {album.artist}</a>
-                            <a class="dropdown-item" href="#">{album.songs.length} songs in the album</a>
+                         <a class="dropdown-item" >Artist: {album.artist}</a>
+                            <a class="dropdown-item" >{album.songs.length} songs in the album</a>
                             </div>
                             </div> 
                         </Link> 

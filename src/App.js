@@ -4,7 +4,7 @@ import { Route, Link } from 'react-router-dom';
 import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
-import Logo from '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/bloc-jams.png';
+import Logo from './bloc-jams.png';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
           
        
 <nav class="navbar navbar-light bg-dark">
-<a class="navbar-brand" href="#">
+<a class="navbar-brand">
     <Link to='/' ><img src={Logo} width="100" height="100"  class="d-inline-block align-top" alt="">
     </img></Link>
   </a>

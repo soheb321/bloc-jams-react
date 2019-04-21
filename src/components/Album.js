@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
-import '/Users/sieger/Desktop/Bloc/bloc-jams-react/src/styles/Album.css';
+import './styles/Album.css';
 
 
 
